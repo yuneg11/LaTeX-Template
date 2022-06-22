@@ -1,0 +1,50 @@
+\documentclass{article}
+
+% Style
+\usepackage{preamble/note}
+% \usepackage{preamble/neurips}
+
+% Preambles
+\input{preamble/declarations}
+\input{preamble/acronyms}
+\input{preamble/math}
+
+% Packages
+\usepackage{lipsum} % Remove this
+
+% Frontmatter
+\title{\LaTeX\space Template}
+\author{
+    \textbf{Eunggu~Yun}\\
+    Graduate School of AI\\
+    Korea Advanced Institute of Science and Technology\\[0.5ex]
+    \texttt{eunggu.yun\,@\,kaist.ac.kr}
+}
+
+% Document
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This is a \LaTeX\space template for writing papers.
+\lipsum[1-3]
+
+\section{Background}
+\lipsum[4-8]
+
+\section{Related Work}
+\lipsum[9-13]
+
+\section{Method}
+\lipsum[15-21]
+
+\section{Conclusion}
+\lipsum[22-24]
+
+\nocite{rolnick2018the}
+
+\clearpage
+\newpage
+\bibliography{references}
+
+\end{document}

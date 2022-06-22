@@ -1,0 +1,92 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{preamble/note}[2022/06/22 Note style file]
+
+% Fonts
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
+
+% Geometry
+\usepackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+    \newgeometry{
+        textheight=9in,
+        textwidth=6.5in,
+        % top=1in,
+        headheight=12pt,
+        headsep=25pt,
+        footskip=30pt
+    }
+    \@ifpackageloaded{fullpage}
+        {\PackageWarning{note}{fullpage package not allowed! Overwriting formatting.}}
+        {}
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+\sloppy
+
+% Save title, author, and date
+\newcommand{\thetitle}{}           % Define \thetitle
+\let\titleoriginal\title           % Save original \title macro
+\renewcommand{\title}[1]{          % Substitute for a new \title
+    \titleoriginal{#1}%            % Define the real title
+    \renewcommand{\thetitle}{#1}   % Define \thetitle
+}
+\newcommand{\theauthor}{}          % Define \theauthor
+\let\authororiginal\author         % Save original \author macro
+\renewcommand{\author}[1]{         % Substitute for a new \author
+    \authororiginal{#1}%           % Define the real author
+    \renewcommand{\theauthor}{#1}  % Define \theauthor
+}
+\newcommand{\thedate}{\today}      % Define \thedate
+\let\dateoriginal\date             % Save original \date macro
+\renewcommand{\date}[1]{           % Substitute for a new \date
+    \dateoriginal{#1}%             % Define the real author
+    \renewcommand{\thedate}{#1}    % Define \thedate
+}
+
+% Page style
+\usepackage{fancyhdr}
+
+\fancypagestyle{plain}{  % Convert plain to fancy
+    \fancyhead{}
+    \rhead{\thedate}
+    \renewcommand{\headrulewidth}{0.5pt}
+%   \renewcommand{\footrulewidth}{0pt}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{\thetitle}
+\rhead{\thedate}
+\rfoot{\thepage}
+
+\renewcommand{\headwidth}{\textwidth}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+% Title
+\makeatletter
+\renewcommand\maketitle{{
+    \raggedleft
+    \begin{flushleft}
+        {\Huge \@title}\\[5ex]
+        {\large \@author}\\[5ex]
+        % {\@date}\\[5ex]
+    \end{flushleft}
+    \thispagestyle{plain}
+}}
+
+% Change date format
+\usepackage[yyyymmdd]{datetime}
+\renewcommand{\dateseparator}{\,\slash\,}
+
+% % Bibilography
+% \usepackage{natbib}
+% \bibliographystyle{abbrvnat}
+
+% Acronyms
+\usepackage[acronym,nowarn,section,nogroupskip,nonumberlist]{glossaries}
+\glsdisablehyper{}
